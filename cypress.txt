@@ -1,0 +1,37 @@
+Date 4/8/24
+
+step1 - install npm - npm init 
+step 2  - npm install cypress --save--dev
+
+cyrpess test runner - it ui
+
+how to open it 
+.\node_modules\.bin\cypress open
+npx cypress open 
+
+cypress cofig file -cypress.config.js
+
+when cypress installed we have some folder and file  got created 
+folder name - cypress
+Inside cypress folder 
+following folder is there 
+1) downloads
+2) fixture
+3) support
+
+file 
+cypress.config.js
+
+
+cypress.config.js -- we define file path where test is created 
+
+ specPattern: 'cypress/Integration/examples/*.js'
+  
+  In Javascript we have to use testing framework 
+  cypress recomanded to use mocka 
+
+
+describe - -test suite 
+it - test case 
+
+
