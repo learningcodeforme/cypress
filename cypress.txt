@@ -34,4 +34,76 @@ cypress.config.js -- we define file path where test is created
 describe - -test suite 
 it - test case 
 
+*****************************************************************************
+Date 5/8/2024
+
+cypress but default run in headless mode when we run in cmd line 
+default browser in electron  if we 
+
+cypress location
+ .\node_modules\.bin\cypress 
+
+
+-- browser  chrome 
+--headed
+
+
+fixture folder - to  keep test data which we used in cypress
+integration folder - to write test in under this folder 
+support folder - customized command and resuable  code to get available to test 
+ if define  code in support folder it automaticall avialabe for test case 
+ node_modules - it is the heart 
+ cyress-config.js - it will autogenrate when we use first time cypress
+ when we open cypress  in setting we have all  option which we use in config.file  we can use that when required 
+
+
+ prtice website - https://rahulshettyacademy.com/seleniumPractise/
+
+ cypress support mainly css selector 
+
+ auto suggetion in cypress -> /// <reference types= "cypress" />  
+
+ command 
+ visit()-> to visit any website
+ get() -to  get locator
+ type() - > to enter text 
+ .should() -assersation 
+ cy.wait()- to make wait 
+ cy.log()- to print log()
+
+ :visible-- to look for only visible element
+ example
+  cy.get('.product:visible')
+
+find() - to limited the scope of locator to specfic locator
+we have  .products locator in that we found .product
+
+example
+  cy.get('.products').find('.product')
+
+eq() -Get A DOM element at a specific index in an array of elements
+Example = 
+  cy.get('.products').find('.product').eq(2).contains('ADD TO CART')
+            .click()
+
+
+cypess is built on node.js and it used js and it async ( all step not wait for other )
+
+It is very important to understand that Cypress commands don't do anything at the moment they are invoked, but rather enqueue themselves to be run later. This is what we mean when we say Cypress commands are asynchronous
+
+
+//Cypress queued all of these commands and now
+// Cypress will begin running them in order!
+
+cypress of asynchronous in nature  but it take care how to execute in order 
+
+promise() -- it is state 
+it have three type 
+rejected  -state is rejected
+reso state is completed
+pending- > state  is yet to complete
+
+to handle promise we have .then()
+
+in cypress promise is hidden from us
 
