@@ -106,4 +106,69 @@ pending- > state  is yet to complete
 to handle promise we have .then()
 
 in cypress promise is hidden from us
+if manipulate the cypress then it not handle the promise
+example --> it retrun the text ( it hanlde the promise)
+cy.get('.brand').text() - text() it is not cypress command and it not work direclty  we need to solve the promise 
 
+text() -it is jquery command 
+cypress can allow jquery but it cannot handle promise ( we need to manually solve it)
+example 
+
+   const logo = cy.get('.brand').then((logo) => {
+            cy.log(logo.text())
+   })
+
+****************************************************************************
+Date 6/8/2024
+ allisa in cypress ising as() 
+ alias - as()  we dfine as locator aslia and call the using 
+            @alias- name ( check in line number 127)
+            cy.get('.products').as('productLocator')
+            cy.get('@productLocator').find('.product').eq(0).contains('ADD TO CART').click()
+
+    
+
+Cypress work directly on browser an it not use network proxy or json 
+any log we print it print in console of browser
+
+ console.log is not cypess command so it async and it can execute any time .it appear in console of browser ( press F12 and check in console tab of browser)
+            console.log('Printing in console')
+
+  to make them in sequence we need to manually solve the promise
+ 
+ 
+ behavioral assertion
+
+ should('be.checked')-it check it behaviour
+
+ ****************************************************************************
+Date 7/8/2024
+
+popup handling popup 
+
+cyress auto accept by itself no need write code 
+
+cypress can listen the event happen in browser 
+ window Event that happen when alert option
+ window.alert this will fire when alert happen
+ cypress can control dom and give our browser command 
+ selenium cannot control dom 
+
+ cy.on()  to handle event
+  
+  ***************************************************************************
+Date 8/8/24
+ to run only on test ( only one it block ) we have use -> .only
+ it.only()
+
+ cypress not support child window to pass control to them
+
+ when any new page open by clicking  to link or tab in html code 
+ one attribute call target which decide where the link one
+ tagert-_blank - it open it new tab
+
+if we able to remove this tag( target) in DOM at run time then page will open' 
+in current widow  we need to use jquery 
+
+
+ 
