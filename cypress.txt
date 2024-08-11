@@ -170,5 +170,31 @@ Date 8/8/24
 if we able to remove this tag( target) in DOM at run time then page will open' 
 in current widow  we need to use jquery 
 
-
+****************************************************************************
+Date 9/8/24
  
+ how to handle web table in cypress 
+****************************************************************************
+date 10/8/2024
+ not able to study 
+****************************************************************************
+date 11/8/2024
+Incypress we have next() to get sibliing element 
+eq()-->  we pass index to particular text and then we apply next()
+     next() only work on get command  
+     we have to solve the promise to get text() as it is 
+
+Refer -Handling table in cyress test case in UI controls
+_____________________________________________________________________________
+ cypress dont have any method to handle mouse over 
+  we have to use jquery show method  to call jquery show method we have to  use .invoke()
+        
+        cy.get('.mouse-hover-content').invoke('show')
+
+ cypress have ability to click hindden element using 
+      click({force:true})
+
+        // to handle invisible element
+        cy.contains('Top').click({ force: true })
+       
+refer - Mouse over in cyress - test case in UIcontrols
