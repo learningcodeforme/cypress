@@ -198,3 +198,17 @@ _____________________________________________________________________________
         cy.contains('Top').click({ force: true })
        
 refer - Mouse over in cyress - test case in UIcontrols
+
+****************************************************************************
+Grabbing the href  vlaue using prop() --> jquery command 
+
+cy.get('#opentab').then((el) => {
+    getting property value using prop() - it is jquery comand
+            const url = el.prop('href')
+            cy.log(url)
+})
+
+    refer- Getting url link from href attribute cypress in UIcontrols.js
+****************************************************************************
+
+Handling frame

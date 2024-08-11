@@ -81,7 +81,7 @@ describe("UI controls", () => {
 
     })
 
-    it('Handling child widow', () => {
+    it('Handling tab widow', () => {
         cy.visit('https://rahulshettyacademy.com/AutomationPractice/')
         // we have to remove target from new table it set as _blank id DOM 
         //  it mean it open the url in new tab
@@ -122,7 +122,7 @@ describe("UI controls", () => {
     })
 
 
-    it.only('Mouse over in cyress ', () => {
+    it('Mouse over in cyress ', () => {
         cy.visit('https://rahulshettyacademy.com/AutomationPractice/')
         //cypress dont have any method to handle mouse over 
         // we have to use jquery show method 
@@ -142,4 +142,24 @@ describe("UI controls", () => {
 
 
     })
+
+    it.only(' Getting url link from href attribute cypress ', () => {
+        cy.visit('https://rahulshettyacademy.com/AutomationPractice/')
+
+        cy.get('#opentab').then((el) => {
+            //getting property value using prop() - it is jquery comand
+            const url = el.prop('href')
+            cy.log(url)
+            //we have to first visit to url which we grab  
+            cy.visit(url)
+            // then we have to call cy.orgin() to move the control of cypress ( it avoid the crosss origin problem)
+            cy.origin(url, () => {
+                cy.get("div .sub-menu-bar a[href*='about']").should('contain', 'About us');
+            })
+
+
+
+        })
+    })
+
 })
