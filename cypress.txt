@@ -210,5 +210,14 @@ cy.get('#opentab').then((el) => {
 
     refer- Getting url link from href attribute cypress in UIcontrols.js
 ****************************************************************************
-
+Date 12/8/24
+Frame is just one web page emebadded in another page
 Handling frame
+
+ we need plugin to work with frame in cypress 
+ cypress-iframe
+ we need to install npm install -D  cypress-iframe
+
+ refer - Handling frames in  cypress
+ ****************************************************************************
+ Handling Calender in Cypress

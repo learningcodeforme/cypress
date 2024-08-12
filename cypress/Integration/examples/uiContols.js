@@ -1,6 +1,7 @@
 
+/// <reference types="cypress-iframe">
+import 'cypress-iframe'
 describe("UI controls", () => {
-
     it("Click checkboxes", () => {
         cy.visit('https://rahulshettyacademy.com/AutomationPractice/')
         // check box click we can use .check()
@@ -143,7 +144,7 @@ describe("UI controls", () => {
 
     })
 
-    it.only(' Getting url link from href attribute cypress ', () => {
+    it(' Getting url link from href attribute cypress ', () => {
         cy.visit('https://rahulshettyacademy.com/AutomationPractice/')
 
         cy.get('#opentab').then((el) => {
@@ -156,10 +157,72 @@ describe("UI controls", () => {
             cy.origin(url, () => {
                 cy.get("div .sub-menu-bar a[href*='about']").should('contain', 'About us');
             })
-
-
-
         })
     })
 
+    it(' Handling frames in  cypress ', () => {
+        cy.visit('https://rahulshettyacademy.com/AutomationPractice/')
+        //step 1 - install cypress iframe plugin 
+        //npm install -D  cypress-iframe
+        //step 2 - Add the import in file 
+        //  /// <reference types="cypress-iframe">-- to make auto suggestion available
+        //import 'cypress-iframe'   --to import iframe of cypress
+        //step3 - find the frame locator and ask cypress to move control or switch focus 
+        // step 4 ->  cy.frameLoaded()--to load frame and pass css of frame
+        cy.frameLoaded('#courses-iframe')
+        //step 5 -cy.iframe  we have to give every time when we want to perform operation inside frame 
+        // step 6  to find any element inside frame we use find() - > pass css inside it 
+        //step 7 -- here we look for mentorship and css return 7 element and we need first one so we pass eq(0) - to get index of that
+        cy.iframe().find("a[href*='mentor']").eq(0).click()
+        //step 8- we look for price-title it return "0" so we put validation
+        // cy.iframe().find("h1[class='pricing-title text-white ls-1']")
+        //     .should('have.length', 0)
+    })
+
+    it.only(' Claneder handling in  cypress ', () => {
+        const day = '15'
+        const month = 'June'
+        const monthNumber = "6"
+        const year = '2027'
+        const expectedList = [monthNumber, day, year]
+        cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/offers')
+        cy.get('.react-date-picker__inputGroup__year').click()
+        cy.get('.react-calendar__navigation__label').click()
+        cy.get('.react-calendar__navigation__label').click()
+
+        // iterating trough for find year month and day
+        // cy.get("button[class='react-calendar__tile react-calendar__decade-view__years__year']").each(($el, index, $list) => {
+        //     if ($el.text() === year)
+        //         cy.wrap($el).click()
+        // })
+
+        // cy.get("button[class='react-calendar__tile react-calendar__year-view__months__month']").each(($el, index, $list) => {
+        //     if ($el.text() === month)
+        //         cy.wrap($el).click()
+        // })
+        // cy.get("button[class='react-calendar__tile react-calendar__month-view__days__day']").each(($el, index, $list) => {
+        //     if ($el.text() === day)
+        //         cy.wrap($el).click()
+        // })
+
+        // contians can hold paratmeter one - type of locator and second value of locator
+        cy.contains("button", year).click()
+        // here Month index start at zero so we do  -1 and berfore the we convert string in to Number
+        cy.get(".react-calendar__year-view__months__month").eq(Number(monthNumber) - 1).click()
+        // abb is locator name and value which we pass as day =6
+        cy.contains("abbr", day).click()
+
+        //Asserstion
+        // month day and year have same locator so we run each and get vlaue of attribute value and compare with expected list 
+        cy.get('.react-date-picker__inputGroup__input').each(($el, index, $list) => {
+
+            //use invoke('val') to get  value of value attribute  and then we use text()
+            cy.wrap($el).invoke('val').then((text) => {
+                cy.log(text)
+            })
+            //compare with expected list 
+            cy.wrap($el).invoke('val').should('eq', expectedList[index])
+        })
+
+    })
 })
