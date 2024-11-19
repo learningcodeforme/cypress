@@ -407,6 +407,31 @@ in test we have specific time out we call defaultCommandTimeOut in our test with
 Cypress.config('defaultCommandTimeOut',10000)
 
 
+page object design pattern  is most common in test framework
+
+locator should be not in code 
+
+cy.pause()-> debug 
+cy.log()-to get logo
+
+
+ npx cypress run --spec cypress\Integration\examples\End2EndFlow.js 
+ 
+ --headed 
+ --browser chrome 
+ 
+  --env url="https://rahulshettyacademy.com"
+
+  reporting cypress mochawesome-reporter 
+
+
+   retries: {
+    runMode: 1,
+    openMode: 0,
+   }
+
+  
+
 
 
 

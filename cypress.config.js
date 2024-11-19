@@ -5,7 +5,7 @@ module.exports = defineConfig({
   defaultCommandTimeout: 6000,
   reporter: 'cypress-mochawesome-reporter',
   env: {
-    url: "https://rahulshettyacademy.com"
+    url: "1"
   },
   retries: {
     runMode: 1,
