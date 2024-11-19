@@ -221,3 +221,197 @@ Handling frame
  refer - Handling frames in  cypress
  ****************************************************************************
  Handling Calender in Cypress
+
+ refer - Claneder handling in  cypress in UIcontrols.js 
+
+ *****************************************************************************
+ Date 13/8/24
+ Framewrok section 
+
+ 1. test Hooks - > 
+ 2. Data driven using fixtures
+ 3. Build custom cypress command 
+ 4. Parametrized with muliple data setting
+ 5. Page object pattern 
+ 6. config changes 
+ 7. screenshot and video
+ 8.Env variable 
+ 9. Generate report 
+ 10. Cypress with jenkins CI 
+11.API Testing using cypress
+
+Test Hooks 
+cypress test hooks taken from mocha 
+test hooks are like anonation
+*******************************************************************
+date 14/8/24
+not able to study
+*********************************************************************
+Date 15/8/2024
+ before-- run  once before all it block
+ after   run once after all it block execute
+ beforeEach - run before each it block
+ afterEach  run after each it block
+
+
+cypress provide fixture  folder to handle external data 
+
+
+when to use 
+have and be 
+
+
+working on behaviour -- use ----- >  be.
+looking for property use --->   have
+
+
+to create custom command 
+
+cypress/support/Comamnd.js file 
+
+1- selectProduct- -command name which we give
+2- productName -arrgument name which we use in functon
+
+Cypress.Commands.add('selectProduct', (productName) => {
+
+    cy.get('div h4 a').each(($el, index, $list) => {
+        if ($el.text().includes(productName)) {
+
+            cy.get('.btn.btn-info').eq(index).click()
+        }
+    })
+})
+
+
+call the method 
+simply calling custom command using command 
+cy.<#custom Command name>
+cy.selectProduct('Nokia Edge')
+cy.selectProduct('Blackberry')
+
+
+   // created productName as array in example.json (Fixture) calling each test date using forEach
+        data.productName.forEach(function (element) {
+            cy.selectProduct(element)
+        });
+
+
+to pause  and look the applciation and u can resume
+
+ cy.pause()
+ cy.debug()
+
+ *******************************************************************************
+ Date 27/8/2024
+ cypress version upgrade 
+ file name cypress.config.js
+
+ all thing we need to add inside  defineConfig
+ item added as key value pair
+in config.js file 
+key -without quotes 
+value = should in quotes 
+
+Cypress.config()
+You can also override configuration values within your test using Cypress.config().
+
+This changes the configuration for the remaining execution of the current spec file. The values will reset to the previous default values after the spec has complete.
+
+Cypress.config('pageLoadTimeout', 100000)
+
+Cypress.config('pageLoadTimeout') // => 100000
+
+handling multiple  env varialbe in config file 
+in confif file we have  object
+env{
+ url: "url where want to visit"
+}
+
+In test file call it using Cypress.env('url)
+
+on terminal  we can define which env we like to run 
+what url we want to use
+npx cypress run --spec cypress/Integration/examples/hooksDemo.js  --env url=" https://rahulshettyacademy.com/angularpractice/" --headed
+
+
+Date 28/8/2024
+***************************************************
+Reporting 
+
+reporting utility - cypress mochawesome reporter 
+
+it take it screenshot and video 
+Link -https://www.npmjs.com/package/cypress-mochawesome-reporter
+
+Step 1 :  install cypress-mochawesome-reporter
+
+npm i --save-dev cypress-mochawesome-reporter
+
+ Step 2 - >  In config file add 
+ 
+  reporter: 'cypress-mochawesome-reporter', 
+
+step 3 - setup event listener
+   require('cypress-mochawesome-reporter/plugin')(on);
+
+step 4: Add to cypress/support/e2e.js
+
+import 'cypress-mochawesome-reporter/register';
+
+step 5 -- to get report add retries 
+ retries: {
+    runMode: 1,
+    openMode: 0,
+  },
+
+  step 6 - run the test case as command line 
+  npx cypress run --spec cypress/Integration/examples/hooksDemo.js
+
+**************************************************************************
+package.json 
+
+scripts -- > It is the place where we define custom command to exectue 
+the test 
+************************************************************************
+Date 29/8/2024
+scripts 
+
+we define our custom command to run test 
+
+example - 
+ "test": "npx cypress run" 
+
+ to run in command line 
+ npm run test
+
+ ******************************************************************************************
+ Jenkins 
+  plugins -> install plugin nodejs 
+  tools - add node js using manage jenkins 
+  
+***************************************************
+
+date - 14/11/2024
+
+filter to  find the specific  element  when locator retun many results 
+
+
+
+fitures -- to handle data in cypress 
+we store data in fixture file and call in our cypress 
+defaultCommandTimeOut: - default time out in cypress is 4 second (4000 mili second )
+it is global time out 
+
+in test we have specific time out we call defaultCommandTimeOut in our test with below syntax
+
+Cypress.config('defaultCommandTimeOut',10000)
+
+
+
+
+
+
+
+
+
+
