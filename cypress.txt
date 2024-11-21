@@ -429,6 +429,17 @@ cy.log()-to get logo
     runMode: 1,
     openMode: 0,
    }
+   cucumber 
+
+   feature file -- extension - .features
+    
+    describe -- feature
+    it --     scenerio 
+
+    step definition file 
+    
+
+    feature file and folder for step definiton should name (best practice)
 
   
 
